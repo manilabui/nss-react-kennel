@@ -1,0 +1,80 @@
+{
+  "animals": [
+    {
+      "id": 1,
+      "name": "Doodles",
+      "breed": "Poodle",
+      "employeeId": 1
+    },
+    {
+      "id": 2,
+      "name": "Decker",
+      "breed": "German Sheperd",
+      "employeeId": 2
+    },
+    {
+      "id": 3,
+      "name": "Esme",
+      "breed": "Pitbull",
+      "employeeId": 3
+    }
+  ],
+  "owners": [
+    {
+      "id": 1,
+      "name": "Pood",
+      "phone": "463-123-4447",
+      "animalId": 1
+    },
+    {
+      "id": 2,
+      "name": "Dood",
+      "phone": "463-123-4445",
+      "animalId": 1
+    },
+    {
+      "id": 3,
+      "name": "Neck",
+      "phone": "493-170-9623",
+      "animalId": 2
+    },
+    {
+      "id": 4,
+      "name": "Esmerelda",
+      "phone": "321-383-4323",
+      "animalId": 3
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "Don"
+    },
+    {
+      "id": 2,
+      "name": "Mon"
+    },
+    {
+      "id": 3,
+      "name": "Bon"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Poo Central"
+    },
+    {
+      "id": 2,
+      "name": "South Paw"
+    },
+    {
+      "id": 3,
+      "name": "Kanye West"
+    },
+    {
+      "id": 4,
+      "name": "Kanye East"
+    }
+  ]
+}

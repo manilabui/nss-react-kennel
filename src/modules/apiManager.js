@@ -1,0 +1,12 @@
+const remoteURL = "http://localhost:5002";
+
+export const getItem = (entity, id) => fetch(`${remoteURL}/${entity}/${id}`).then(result => result.json());
+
+export const getAll = entity => fetch(`${remoteURL}/${entity}`).then(result => result.json());
+
+export const deleteItem = (entity, id) => {
+  return fetch(`http://localhost:5002/${entity}/${id}`, {
+      method: "DELETE"
+  })
+  	.then(result => result.json());
+};
