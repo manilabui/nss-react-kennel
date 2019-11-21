@@ -1,10 +1,10 @@
 {
   "animals": [
     {
-      "id": 2,
-      "name": "Decker",
-      "breed": "German Sheperd",
-      "employeeId": 2
+      "id": 1,
+      "name": "Doodles",
+      "breed": "Poodle",
+      "employeeId": 1
     },
     {
       "id": 3,
@@ -15,10 +15,16 @@
   ],
   "owners": [
     {
-      "id": 3,
-      "name": "Neck",
-      "phone": "493-170-9623",
-      "animalId": 2
+      "id": 1,
+      "name": "Pood",
+      "phone": "463-123-4447",
+      "animalId": 1
+    },
+    {
+      "id": 2,
+      "name": "Dood",
+      "phone": "463-123-4445",
+      "animalId": 1
     },
     {
       "id": 4,

@@ -1,16 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { getItem } from '../../modules/apiManager';
+import { getItem, deleteItem } from '../../modules/apiManager';
 
-export default ({ animalId }) => {
+export default ({ animalId, history }) => {
     const [name, setName] = useState('');
     const [breed, setBreed] = useState('');
+    let [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => { getItem("animals", animalId)
-        .then(({ name, breed }) => {
-            setName(name);
-            setBreed(breed);
-        })
-    }, [animalId]);
+    useEffect(() => {
+        let isSubscribed = true;
+
+        getItem("animals", animalId)
+            .then(({ name, breed }) => {
+                if (isSubscribed) {
+                    setName(name);
+                    setBreed(breed);
+                    setIsLoading(false);
+                };
+            });
+
+        return () => isSubscribed = false;
+    }, [animalId, isLoading]);
+
+    const handleDelete = () => {
+        setIsLoading(true);
+        deleteItem(animalId)
+            .then(() => history.push("/animals"));
+    };
 
     return (
         <div className="card">
@@ -20,6 +35,7 @@ export default ({ animalId }) => {
            </picture>
              <h3>Name: <span style={{ color: 'darkslategrey' }}>{name}</span></h3>
              <p>Breed: {breed}</p>
+             <button type="button" disabled={isLoading} onClick={handleDelete}>Discharge</button>
          </div>
        </div>
     );

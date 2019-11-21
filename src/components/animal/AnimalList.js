@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import AnimalCard from './AnimalCard';
 import { getAll, deleteItem } from '../../modules/apiManager';
 
-const AnimalList = () => {
+const AnimalList = ({ history }) => {
     const [animals, setAnimals] = useState([]);
     
 	useEffect(() => { getAll("animals").then(animals => setAnimals(animals)) }, []);
@@ -28,11 +28,20 @@ const AnimalList = () => {
     	);
     });
 
-
     return (
-        <div className="container-cards">
-        	{animalsArr}
-        </div>
+        <Fragment>
+            <section className="section-content">
+              <button 
+                    type="button"
+                    className="btn"
+                    onClick={() => history.push("/animals/new")}>
+                    Admit Animal
+              </button>
+            </section>
+            <div className="container-cards">
+            	{animalsArr}
+            </div>
+        </Fragment>
     );
 };
 
