@@ -1,17 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import NavBar from "./nav/NavBar";
 import ApplicationViews from "./ApplicationViews";
 import "./Kennel.css";
 
-class Kennel extends Component {
-  render() {
+export default () => {
     return (
-      <div>
-        <NavBar />
-        <ApplicationViews />
-      </div>
+		<div>
+			<NavBar />
+			<ApplicationViews />
+		</div>
     );
-  };
 };
-
-export default Kennel;

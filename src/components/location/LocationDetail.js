@@ -1,25 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { getItem } from '../../modules/apiManager';
 
-export default ({ animalId }) => {
+export default ({ locationId }) => {
     const [name, setName] = useState('');
-    const [breed, setBreed] = useState('');
 
-    useEffect(() => { getItem("animals", animalId)
-        .then(({ name, breed }) => {
-            setName(name);
-            setBreed(breed);
-        })
-    }, [animalId]);
+    useEffect(() => { getItem("locations", locationId)
+        .then(({ name }) => setName(name))
+    }, [locationId]);
 
     return (
         <div className="card">
          <div className="card-content">
            <picture>
-             <img src={require('./dog.svg')} alt="My Dog" />
+             <img src={require('./location.svg')} alt="Location" />
            </picture>
              <h3>Name: <span style={{ color: 'darkslategrey' }}>{name}</span></h3>
-             <p>Breed: {breed}</p>
          </div>
        </div>
     );

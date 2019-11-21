@@ -1,12 +1,6 @@
 {
   "animals": [
     {
-      "id": 1,
-      "name": "Doodles",
-      "breed": "Poodle",
-      "employeeId": 1
-    },
-    {
       "id": 2,
       "name": "Decker",
       "breed": "German Sheperd",
@@ -21,46 +15,16 @@
   ],
   "owners": [
     {
-      "id": 1,
-      "name": "Pood",
-      "phone": "463-123-4447",
-    },
-    {
-      "id": 2,
-      "name": "Dood",
-      "phone": "463-123-4445",
-    },
-    {
       "id": 3,
       "name": "Neck",
       "phone": "493-170-9623",
+      "animalId": 2
     },
     {
       "id": 4,
       "name": "Esmerelda",
       "phone": "321-383-4323",
-    }
-  ],
-  "animalOwners": [
-    {
-      "id": 1,
-      "animalId": 2,
-      "ownerId": 2
-    },
-    {
-      "id": 2,
-      "animalId": 2,
-      "ownerId": 3
-    },
-    {
-      "id": 3,
-      "animalId": 1,
-      "ownerId": 1
-    },
-    {
-      "id": 4,
-      "animalId": 1,
-      "ownerId": 4
+      "animalId": 3
     }
   ],
   "employees": [
