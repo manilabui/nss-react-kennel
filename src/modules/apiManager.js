@@ -21,3 +21,13 @@ export const postItem = (entity, item) => {
     })
     	.then(data => data.json());
 };
+
+export const updateItem = (entity, item) => {
+    return fetch(`${remoteURL}/${entity}/${item.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(item)
+    }).then(data => data.json());
+  };
