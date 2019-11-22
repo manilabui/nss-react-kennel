@@ -24,6 +24,7 @@ const AnimalList = ({ history }) => {
         		name={name}
         		breed={breed}
         		deleteAnimal={deleteAnimal}
+                history={history}
         	/>
     	);
     });

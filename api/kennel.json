@@ -2,15 +2,19 @@
   "animals": [
     {
       "id": 1,
-      "name": "Doodles",
-      "breed": "Poodle",
-      "employeeId": 1
+      "name": "Dood",
+      "breed": "Pood"
     },
     {
       "id": 3,
       "name": "Esme",
       "breed": "Pitbull",
       "employeeId": 3
+    },
+    {
+      "name": "Jerome",
+      "breed": "Pitbull",
+      "id": 4
     }
   ],
   "owners": [
