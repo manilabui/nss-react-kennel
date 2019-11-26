@@ -1,83 +1,71 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment, useState, useRef, useEffect } from "react";
 import { updateItem, getItem } from "../../modules/apiManager";
 import "./AnimalForm.css";
 
-class AnimalEditForm extends Component {
-    //set the initial state
-    state = {
-      animalName: "",
-      breed: "",
-      loadingStatus: true,
+export default ({ animalId, match, history }) => {
+    const [isLoading, setIsLoading] = useState(true);
+
+    const name = useRef();
+    const breed = useRef();
+
+    const populateAnimal = () => {
+        getItem("animals", match.params.animalId)
+            .then(animal => {
+                setIsLoading(false);
+                name.current.value = animal.name;
+                breed.current.value = animal.breed;
+            });
+    };
+    useEffect(populateAnimal, []);
+
+    const updateAnimal = () => {
+        if (name.current.value === "" || breed.current.value === "") window.alert('Dawg, imma need a name AND breed.');
+        else {
+            setIsLoading(true);
+
+            const animal = {
+                name: name.current.value,
+                breed: breed.current.value
+            };
+
+            updateItem("animals", animal).then(() => history.push("/animals"));
+        };
     };
 
-    handleFieldChange = evt => {
-      const stateToChange = {}
-      stateToChange[evt.target.id] = evt.target.value
-      this.setState(stateToChange)
-    }
-
-    updateExistingAnimal = evt => {
-      evt.preventDefault()
-      this.setState({ loadingStatus: true });
-      const editedAnimal = {
-        id: this.props.match.params.animalId,
-        name: this.state.animalName,
-        breed: this.state.breed
-      };
-
-    updateItem("animals", editedAnimal)
-      .then(() => this.props.history.push("/animals"))
-    }
-
-    componentDidMount() {
-      getItem("animals", this.props.match.params.animalId)
-        .then(animal => {
-          this.setState({
-            animalName: animal.name,
-            breed: animal.breed,
-            loadingStatus: false,
-          });
-      });
-    }
-
-    render() {
-      return (
+    return (
         <Fragment>
-          <form>
-            <fieldset>
-              <div className="formgrid">
-                <input
-                  type="text"
-                  required
-                  className="form-control"
-                  onChange={this.handleFieldChange}
-                  id="animalName"
-                  value={this.state.animalName}
-                />
-                <label htmlFor="animalName">Animal name</label>
+            <form>
+                <fieldset>
+                    <div className="formgrid">
+                    <input
+                        type="text"
+                        required
+                        className="form-control"
+                        ref={name}
+                        id="animalName"
+                    />
+                    <label htmlFor="animalName">Animal name</label>
 
-                <input
-                  type="text"
-                  required
-                  className="form-control"
-                  onChange={this.handleFieldChange}
-                  id="breed"
-                  value={this.state.breed}
-                />
-                <label htmlFor="breed">Breed</label>
-              </div>
-              <div className="alignRight">
-                <button
-                  type="button" disabled={this.state.loadingStatus}
-                  onClick={this.updateExistingAnimal}
-                  className="btn btn-primary"
-                >Submit</button>
-              </div>
-            </fieldset>
-          </form>
+                    <input
+                        type="text"
+                        required
+                        className="form-control"
+                        ref={breed}
+                        id="breed"
+                    />
+                    <label htmlFor="breed">Breed</label>
+                    </div>
+                    <div className="alignRight">
+                    <button
+                        type="button" 
+                        disabled={isLoading}
+                        onClick={updateAnimal}
+                        className="btn btn-primary">
+                        Submit
+                    </button>
+                    </div>
+                </fieldset>
+            </form>
         </Fragment>
-      );
-    }
-}
-
-export default AnimalEditForm;
+    );
+};

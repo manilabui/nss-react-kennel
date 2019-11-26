@@ -1,86 +1,59 @@
-import React, { Fragment, Component } from 'react';
-// import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useRef } from 'react';
 import { postItem } from '../../modules/apiManager';
 import './AnimalForm.css';
 
-// export default () => {
-//     const [name, setName] = useState('');
-//     const [breed, setBreed] = useState('');
-//     let [isLoading, setIsLoading] = useState(false);
+export default ({ history }) => {
+    const [isLoading, setIsLoading] = useState(false);
 
-//     const handleFieldChange = e => {
+    const name = useRef();
+    const breed = useRef();
 
-//     }
-// };
+    const constructNewAnimal = (nameInput, breedInput) => {
+        if (nameInput === "" || breedInput === "") window.alert('Dawg, imma need a name AND breed.');
+        else {
+            setIsLoading(true);
 
-class AnimalForm extends Component {
-    state = {
-        animalName: "",
-        breed: "",
-        loadingStatus: false,
-    };
-
-    handleFieldChange = evt => {
-        const stateToChange = {};
-        stateToChange[evt.target.id] = evt.target.value;
-        this.setState(stateToChange);
-    };
-
-    /*  Local method for validation, set loadingStatus, create animal      object, invoke the AnimalManager post method, and redirect to the full animal list
-    */
-    constructNewAnimal = evt => {
-        evt.preventDefault();
-        if (this.state.animalName === "" || this.state.breed === "") {
-            window.alert("Please input an animal name and breed");
-        } else {
-            this.setState({ loadingStatus: true });
             const animal = {
-                name: this.state.animalName,
-                breed: this.state.breed,
+                name: name.current.value,
+                breed: breed.current.value
             };
 
-            // Create the animal and redirect user to animal list
-            postItem("animals", animal)
-                .then(() => this.props.history.push("/animals"));
-        }
+            postItem("animals", animal).then(() => history.push("/animals"));
+        };
     };
 
-    render(){
-
-        return(
-            <Fragment>
+    return (
+        <Fragment>
             <form>
                 <fieldset>
                     <div className="formgrid">
                         <input
-                        type="text"
-                        required
-                        onChange={this.handleFieldChange}
-                        id="animalName"
-                        placeholder="Animal name"
+                            type="text"
+                            required
+                            ref={name}
+                            id="animalName"
+                            placeholder="Animal name"
                         />
                         <label htmlFor="animalName">Name</label>
                         <input
-                        type="text"
-                        required
-                        onChange={this.handleFieldChange}
-                        id="breed"
-                        placeholder="Breed"
+                            type="text"
+                            required
+                            ref={breed}
+                            id="breed"
+                            placeholder="Breed"
                         />
                         <label htmlFor="breed">Breed</label>
                     </div>
                     <div className="alignRight">
                         <button
-                        type="button"
-                        disabled={this.state.loadingStatus}
-                        onClick={this.constructNewAnimal}
-                        >Submit</button>
+                            type="button"
+                            disabled={isLoading}
+                            onClick={constructNewAnimal}>
+                            Submit
+                        </button>
                     </div>
                 </fieldset>
             </form>
         </Fragment>
-        )
-    }
-}
-
-export default AnimalForm
+    );
+};

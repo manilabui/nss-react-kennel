@@ -2,10 +2,12 @@ import React, { Fragment, useState, useEffect } from 'react';
 import AnimalCard from './AnimalCard';
 import { getAll, deleteItem } from '../../modules/apiManager';
 
-const AnimalList = ({ history }) => {
+const AnimalList = props => {
     const [animals, setAnimals] = useState([]);
     
-	useEffect(() => { getAll("animals").then(animals => setAnimals(animals)) }, []);
+    const getAnimals = () => { getAll("animals").then(animals => setAnimals(animals)) };
+
+	useEffect(getAnimals, []);
 
 	const deleteAnimal = id => {
 		deleteItem("animals", id)
@@ -15,16 +17,12 @@ const AnimalList = ({ history }) => {
 	};
 
     const animalsArr = animals.map(animal => {
-    	const { id, name, breed } = animal;
-
     	return (
         	<AnimalCard
-        		key={id}
-        		id={id}
-        		name={name}
-        		breed={breed}
+        		key={animal.id}
+        		animal={animal}
         		deleteAnimal={deleteAnimal}
-                history={history}
+                {...props}
         	/>
     	);
     });
@@ -32,12 +30,12 @@ const AnimalList = ({ history }) => {
     return (
         <Fragment>
             <section className="section-content">
-              <button 
+                <button 
                     type="button"
                     className="btn"
-                    onClick={() => history.push("/animals/new")}>
-                    Admit Animal
-              </button>
+                    onClick={() => props.history.push("/animals/new")}>
+                        Admit Animal
+                </button>
             </section>
             <div className="container-cards">
             	{animalsArr}

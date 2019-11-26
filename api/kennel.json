@@ -6,15 +6,14 @@
       "breed": "Pood"
     },
     {
-      "id": 3,
-      "name": "Esme",
-      "breed": "Pitbull",
-      "employeeId": 3
+      "id": 4,
+      "name": "Hot Dog",
+      "breed": "Beef"
     },
     {
-      "name": "Jerome",
-      "breed": "Pitbull",
-      "id": 4
+      "name": "Rawr",
+      "breed": "I'm a lion",
+      "id": 5
     }
   ],
   "owners": [
@@ -29,12 +28,6 @@
       "name": "Dood",
       "phone": "463-123-4445",
       "animalId": 1
-    },
-    {
-      "id": 4,
-      "name": "Esmerelda",
-      "phone": "321-383-4323",
-      "animalId": 3
     }
   ],
   "employees": [

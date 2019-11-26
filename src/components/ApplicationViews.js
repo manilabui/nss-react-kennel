@@ -23,12 +23,6 @@ export default () => {
       }} />
       <Route path="/animals/new" render={props => <AnimalForm {...props} />} />
       <Route exact path="/animals/:animalId(\d+)" render={props => {
-        // this.props and props are different
-        // this.props is from the parent component while props are from react router dom
-        // could put history={props.history}
-        // match={props.match}
-        // location={props.location}
-        // or props={props} but we would have to do this.props.props.history in order to access that info within animalDetail
         return <AnimalDetail animalId={parseInt(props.match.params.animalId)} {...props} />
       }} />
       <Route path="/animals/:animalId(\d+)/edit" render={props => <AnimalEditForm {...props} /> }/>
